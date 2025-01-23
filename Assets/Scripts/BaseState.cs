@@ -1,25 +1,34 @@
 using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 public class BaseState : IState
 {
-    private Player player;
-    private StateMachine stateMachine;
-    public BaseState([NotNull] Player player, [NotNull] StateMachine stateMachine)
+    protected readonly Player player;
+    protected readonly Animator animator;
+    protected readonly int hasKey;
+    protected readonly Dictionary<IState, IPredicate> allTransitions = new Dictionary<IState, IPredicate>();
+
+    public BaseState(Player player, Animator animator, string animationKey,
+        params (IState state, IPredicate condition)[] transitions)
     {
-        this.player = player ?? throw new ArgumentNullException(nameof(player));
-        this.stateMachine = stateMachine ?? throw new ArgumentNullException(nameof(stateMachine));
+        this.player = player;
+        this.animator = animator;
+        hasKey = Animator.StringToHash(animationKey);
+        foreach(var tran in transitions)
+        {
+            if (!allTransitions.ContainsKey(tran.state)) allTransitions.Add(tran.state, tran.condition);
+        }
     }
+
     public virtual void Enter()
     {
-        Debug.Log("BaseState Enter");
+        animator.Play(hasKey);
     }
     public virtual void Exit()
     {
-        Debug.Log("BaseState Exit");
     }
     public virtual void Update()
     {
-        Debug.Log("BaseState Update");
     }
 }

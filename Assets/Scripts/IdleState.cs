@@ -1,19 +1,12 @@
 using UnityEngine;
 public class IdleState : BaseState
 {
-    public IdleState(Player player, StateMachine stateMachine) : base(player, stateMachine)
+    public IdleState(Player player, Animator animator, string animationKey) : base(player, animator, animationKey)
     {
     }
     public override void Enter()
     {
-        Debug.Log("IdleState Enter");
+        base.Enter();
     }
-    public override void Exit()
-    {
-        Debug.Log("IdleState Exit");
-    }
-    public override void Update()
-    {
-        Debug.Log("IdleState Update");
-    }
+
 }

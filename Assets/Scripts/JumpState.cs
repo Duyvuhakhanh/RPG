@@ -1,21 +1,21 @@
 using UnityEngine;
-public class MoveState : BaseState
+public class JumpState : BaseState
 {
-
-
-    public MoveState(Player player, Animator animator, string animationKey) : base(player, animator, animationKey)
+    public JumpState(Player player, Animator animator, string animationKey) : base(player, animator, animationKey)
     {
     }
     public override void Enter()
     {
+        player.rb.velocity = new Vector2(player.rb.velocity.x, player.jumpForce);
         base.Enter();
     }
     public override void Exit()
     {
-        player.rb.velocity = Vector2.zero;
+        base.Exit();
     }
     public override void Update()
     {
         player.rb.velocity = new Vector2(player.xInput * player.speed, player.rb.velocity.y);
+        base.Update();
     }
 }

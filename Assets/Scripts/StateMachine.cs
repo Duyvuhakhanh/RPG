@@ -16,6 +16,7 @@ public class StateMachine
         {
             ChangeState(transition.To);
         }
+        CurrentState?.State.Update();
     }
     private void ChangeState(IState state)
     {
@@ -28,9 +29,9 @@ public class StateMachine
         curSate?.State.Exit();
         nextState?.Enter();
     }
-    public void AddTransition(IState from, IState to, IPredicate condition)
+    public void InjectTransition(IState target, IState source, IPredicate condition)
     {
-        GetOrAddNode(from).AddTransition(GetOrAddNode(to).State, condition);
+        GetOrAddNode(target).AddTransition(GetOrAddNode(source).State, condition);
     }
     public void AddAnyTransition(IState to, IPredicate condition)
     {
