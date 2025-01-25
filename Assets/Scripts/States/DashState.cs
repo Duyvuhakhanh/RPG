@@ -1,7 +1,7 @@
 using UnityEngine;
 public class DashState : BaseState
 {
-    private IState preState;
+    private BaseState preState;
     public DashState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
     {
     }
@@ -9,7 +9,7 @@ public class DashState : BaseState
     {
         base.Enter();
         stateTimmer = player.dashTime;
-        preState = stateMachine.PreState.State;
+        preState = stateMachine.PreState;
         OnDash();
         player.rb.velocity = new Vector2(player.rb.velocity.x, 0);
 

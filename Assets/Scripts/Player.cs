@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
+    //public void AnimationTriggers() => stateMachine.CurrentState.AnimationTriggers();
     private void Flip()
     {
         faceRight = !faceRight;

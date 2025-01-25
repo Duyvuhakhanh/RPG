@@ -14,8 +14,10 @@ public class IdleState : GroundedState
         base.Update();
         if(xInput != 0)
         {
+            Debug.Log("stateMachine ChangeState");
             stateMachine.ChangeState(player.MoveState);
         }
+        Debug.Log("IdleState Update");
     }
 
 

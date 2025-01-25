@@ -6,12 +6,11 @@ public class BaseState : IState
 {
     protected readonly Player player;
     protected readonly Animator animator;
-    protected readonly int hasKey;
+    protected readonly int hashKey;
     protected readonly StateMachine stateMachine;
     protected float stateTimmer;
     protected float xInput { get; private set; }
     protected float yInput { get; private set; } 
-    protected readonly Dictionary<IState, IPredicate> allTransitions = new Dictionary<IState, IPredicate>();
 
     public BaseState(Player player, StateMachine stateMachine, Animator animator, string animationKey
     )
@@ -19,13 +18,13 @@ public class BaseState : IState
         this.stateMachine = stateMachine;
         this.player = player;
         this.animator = animator;
-        hasKey = Animator.StringToHash(animationKey);
+        hashKey = Animator.StringToHash(animationKey);
 
     }
 
     public virtual void Enter()
     {
-        animator.Play(hasKey);
+        animator.Play(hashKey);
     }
     public virtual void Exit()
     {
@@ -36,8 +35,13 @@ public class BaseState : IState
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
 
+
     }
     public virtual void FixedUpdate()
     {
+    }
+    public void AnimationTriggers()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -12,4 +12,5 @@ public class StateNode
     {
         transitions.Add(new Transition(to, condition));
     }
+
 }

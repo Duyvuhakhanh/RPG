@@ -17,6 +17,7 @@ public class MoveState : GroundedState
     public override void Update()
     {
         base.Update();
+        Debug.Log("MoveState Update");
         if(xInput == 0)
         {
             stateMachine.ChangeState(player.IdleState);
@@ -29,6 +30,8 @@ public class MoveState : GroundedState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        Debug.Log("MoveState FixedUpdate");
+
         player.rb.velocity = new Vector2(xInput * player.speed, player.rb.velocity.y);
     }
 }
