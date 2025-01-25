@@ -17,7 +17,11 @@ public class DashState : BaseState
 
     public override void Update()
     {
-        base.Update();  
+        base.Update();
+        if (!player.IsOnGround() && player.IsWallDetected())
+        {
+            stateMachine.ChangeState(player.WallSlideState);
+        }
         OnDash();
         if(stateTimmer <= 0)
         {
@@ -32,7 +36,7 @@ public class DashState : BaseState
     }
     public override void Exit()
     {
-        stateMachine.ChangeState(preState.GetType() == typeof(JumpState) ? player.AirState : preState);
+        stateMachine.ChangeState(preState.GetType() == typeof(JumpState) || preState.GetType() == typeof(JumpWallState)? player.AirState : preState);
         player.rb.velocity = new Vector2(0, player.rb.velocity.y);
         base.Exit();
     }

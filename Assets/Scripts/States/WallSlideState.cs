@@ -8,7 +8,6 @@ public class WallSlideState : BaseState
     public override void Enter()
     {
         player.rb.velocity = new Vector2(0, 0);
-        
         base.Enter();
     }
     public override void Exit()
@@ -18,6 +17,12 @@ public class WallSlideState : BaseState
     public override void Update()
     {
         base.Update();
+        
+        if(yInput > 0)
+        {
+            stateMachine.ChangeState(player.JumpWallState);
+            return;
+        }
         if(xInput != 0 && xInput * player.faceDir < 0)
         {
             stateMachine.ChangeState(player.IdleState);
@@ -27,6 +32,7 @@ public class WallSlideState : BaseState
         {
             stateMachine.ChangeState(player.IdleState);
         }
+
         
     }
     public override void FixedUpdate()

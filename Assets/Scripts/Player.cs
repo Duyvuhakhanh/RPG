@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [Header("Player Settings")] public float speed = 5;
     public float jumpForce = 12;
     public float jumpWallForce = 3;
+    public float jumpWallTime = 0.4f;
     public float dashForce = 20;
     public float dashTime = 0.2f;
 
@@ -97,6 +98,7 @@ public class Player : MonoBehaviour
     }
     private void CheckDashInput()
     {
+        if(IsWallDetected()) return;
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             dashDir = Input.GetAxisRaw("Horizontal");
@@ -134,5 +136,9 @@ public class Player : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+    }
+    public void SetVelocity(Vector2 vector2)
+    {
+        rb.velocity = vector2;
     }
 }
