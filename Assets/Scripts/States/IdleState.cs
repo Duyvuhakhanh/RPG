@@ -7,6 +7,7 @@ public class IdleState : GroundedState
     public override void Enter()
     {
         base.Enter();
+        player.SetVelocity(Vector2.zero);
 
     }
     public override void Update()

@@ -12,7 +12,7 @@ public class MoveState : GroundedState
     }
     public override void Exit()
     {
-        player.SetVelocity(Vector2.zero);
+        //player.SetVelocity(Vector2.zero);
         base.Exit();
     }
     public override void Update()
@@ -26,6 +26,7 @@ public class MoveState : GroundedState
         {
             stateMachine.ChangeState(player.AirState);
         }
+
     }
     public override void FixedUpdate()
     {

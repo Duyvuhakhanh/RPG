@@ -9,8 +9,8 @@ public class BaseState : IState
     protected readonly int hashKey;
     protected readonly StateMachine stateMachine;
     protected float stateTimmer;
-    protected float xInput { get; private set; }
-    protected float yInput { get; private set; }
+    protected float xInput;
+    protected float yInput;
     protected bool triggerCalled;
 
     public BaseState(Player player, StateMachine stateMachine, Animator animator, string animationKey

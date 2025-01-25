@@ -17,9 +17,15 @@ public class PrimeAttackState : BaseState
             comboCounter = 0;
         }
         animator.SetInteger(ComboCounter, comboCounter);
-        player.SetVelocity(new(player.attackMovement[comboCounter].x * player.faceDir, player.attackMovement[comboCounter].y));
-        //stateTimmer = comboCounter == 0 ? 0.1f : 0f;
         stateTimmer = 0.1f;
+        float attackDirection = player.faceDir;
+        xInput = Input.GetAxisRaw("Horizontal");
+        Debug.Log($"Enter xInput: {xInput}");
+        if(xInput != 0)
+        {
+            attackDirection = xInput;
+        }
+        player.SetVelocity(new(player.attackMovement[comboCounter].x * attackDirection, player.attackMovement[comboCounter].y));
         player.LockAcitivity(0.15f);
         
     }
