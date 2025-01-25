@@ -10,7 +10,8 @@ public class BaseState : IState
     protected readonly StateMachine stateMachine;
     protected float stateTimmer;
     protected float xInput { get; private set; }
-    protected float yInput { get; private set; } 
+    protected float yInput { get; private set; }
+    protected bool triggerCalled;
 
     public BaseState(Player player, StateMachine stateMachine, Animator animator, string animationKey
     )
@@ -24,10 +25,12 @@ public class BaseState : IState
 
     public virtual void Enter()
     {
-        animator.Play(hashKey);
+        animator.SetBool(hashKey, true);
+        triggerCalled = false;
     }
     public virtual void Exit()
     {
+        animator.SetBool(hashKey, false);
     }
     public virtual void Update()
     {
@@ -40,8 +43,8 @@ public class BaseState : IState
     public virtual void FixedUpdate()
     {
     }
-    public void AnimationTriggers()
+    public void AnimationTrigger()
     {
-        throw new System.NotImplementedException();
+        triggerCalled = true;
     }
 }

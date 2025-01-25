@@ -35,6 +35,6 @@ public class JumpWallState : BaseState
     }
     private void OnJump()
     {
-        player.rb.velocity = new Vector2( - player.faceDir * player.jumpWallForce, player.jumpForce);
+        player.SetVelocity(new Vector2(-player.faceDir * player.jumpWallForce, player.jumpForce));
     }
 }

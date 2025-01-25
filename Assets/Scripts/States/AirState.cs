@@ -29,7 +29,7 @@ public class AirState : BaseState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        player.rb.velocity = new Vector2(xInput * player.speed * speedXOnAir, player.rb.velocity.y);
+        player.SetVelocity(new Vector2(xInput * player.speed * speedXOnAir, player.rb.velocity.y)) ;
 
     }
 }

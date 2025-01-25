@@ -648,7 +648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 20
-  jumpWallForce: 12
+  jumpWallForce: 6
+  jumpWallTime: 0.4
   dashForce: 20
   dashTime: 0.2
   groundCheckDistance: 0.07

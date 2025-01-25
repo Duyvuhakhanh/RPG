@@ -19,5 +19,9 @@ public class GroundedState : BaseState
         {
             stateMachine.ChangeState(player.JumpState);
         }
+        if (Input.GetMouseButton(0))
+        {
+            stateMachine.ChangeState(player.PrimeAttackState);
+        }
     }
 }

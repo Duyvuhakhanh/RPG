@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="095d97d0-81d1-46f7-a264-7edcd999b022" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerAnimationTriggers.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerAnimationTriggers.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/States/PrimeAttackState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/States/PrimeAttackState.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Attack2.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Attack2.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Attack3.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Attack3.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/PlayerAnim.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/PlayerAnim.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AnimationKeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AnimationKeys.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StateNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StateNode.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/BaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/BaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/DashState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/DashState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/GroundedState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/GroundedState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/IdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/IdleState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/MoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/MoveState.cs" afterDir="false" />
     </list>
@@ -84,10 +91,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8356">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="16104">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="8356" />
+      <option name="pid" value="16104" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
         <list>
@@ -114,6 +121,7 @@
       <workItem from="1737712137576" duration="13546000" />
       <workItem from="1737780333594" duration="8413000" />
       <workItem from="1737805546429" duration="4838000" />
+      <workItem from="1737820731891" duration="7937000" />
     </task>
     <servers />
   </component>
@@ -129,37 +137,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/StateMachine.cs</url>
-          <line>24</line>
-          <properties documentPath="F:\Duy\RPG\Assets\Scripts\StateMachine.cs" containingFunctionPresentation="Method 'ChangeState'">
-            <startOffsets>
-              <option value="668" />
-            </startOffsets>
-            <endOffsets>
-              <option value="675" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/States/IdleState.cs</url>
-          <line>17</line>
-          <properties documentPath="F:\Duy\RPG\Assets\Scripts\States\IdleState.cs" containingFunctionPresentation="Method 'Update'">
-            <startOffsets>
-              <option value="456" />
-            </startOffsets>
-            <endOffsets>
-              <option value="499" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -12,13 +12,10 @@ public class IdleState : GroundedState
     public override void Update()
     {
         base.Update();
-        if(xInput != 0)
+        if(xInput != 0 && !player.isBusy)
         {
-            Debug.Log("stateMachine ChangeState");
             stateMachine.ChangeState(player.MoveState);
         }
-        Debug.Log("IdleState Update");
     }
-
 
 }

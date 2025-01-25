@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
@@ -9,10 +11,11 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public float dashDir { get; private set; }
     public int faceDir => faceRight ? 1 : -1;
-
+    public bool isBusy { get; private set; }
     #endregion
 
-
+    [Header("Attack Settings")] 
+    public Vector2[] attackMovement;
     [Header("Player Settings")] public float speed = 5;
     public float jumpForce = 12;
     public float jumpWallForce = 3;
@@ -42,7 +45,7 @@ public class Player : MonoBehaviour
     public DashState DashState;
     public AirState AirState;
     public JumpWallState JumpWallState;
-
+    public PrimeAttackState PrimeAttackState;
     #endregion
 
     private void Awake()
@@ -62,6 +65,7 @@ public class Player : MonoBehaviour
         DashState = new DashState(this, stateMachine, playerAnimator, AnimationKeys.Dash);
         WallSlideState = new WallSlideState(this, stateMachine, playerAnimator, AnimationKeys.WallSlide);
         JumpWallState = new JumpWallState(this, stateMachine, playerAnimator, AnimationKeys.Jump);
+        PrimeAttackState = new PrimeAttackState(this, stateMachine, playerAnimator, AnimationKeys.PrimeAttack);
         // // Inject Transitions
         // stateMachine.InjectTransition(IdleState, MoveState, new FuncPredicate(() => xInput != 0));
         // stateMachine.InjectTransition(IdleState, JumpState, new FuncPredicate(() => yInput > 0));
@@ -107,6 +111,19 @@ public class Player : MonoBehaviour
             stateMachine.ChangeState(DashState);
         }
     }
+    public void LockAcitivity(float time)
+    {
+        StartCoroutine(ILockAcitivity(time));
+    }
+    IEnumerator ILockAcitivity(float time)
+    {
+        isBusy = true;
+        yield return new WaitForSeconds(time);
+        isBusy = false;
+    }
+
+    #region Direction
+
     private void UpdateDirection()
     {
         if (rb.velocity.x > 0.01f && !faceRight)
@@ -118,13 +135,19 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
-    //public void AnimationTriggers() => stateMachine.CurrentState.AnimationTriggers();
     private void Flip()
     {
         faceRight = !faceRight;
         transform.Rotate(0, 180, 0);
         //Debug.Break();
     }
+
+    #endregion
+
+    public void AnimationTrigger() => stateMachine.CurrentState.AnimationTrigger();
+
+
+    #region Collision
     public bool IsOnGround()
     {
         return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
@@ -138,8 +161,15 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
+    #endregion
+
+    #region Velocity
+
     public void SetVelocity(Vector2 vector2)
     {
         rb.velocity = vector2;
     }
+
+    #endregion
+    
 }
