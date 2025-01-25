@@ -7,26 +7,40 @@ public class Player : MonoBehaviour
 
     private Animator playerAnimator;
     public Rigidbody2D rb { get; private set; }
-    public float xInput { get; private set; }
-    public float yInput { get; private set; }
+    public float dashDir { get; private set; }
+    public int faceDir => faceRight ? 1 : -1;
 
     #endregion
 
 
-    [Header("Player Settings")]
-    public float speed = 5;
+    [Header("Player Settings")] public float speed = 5;
     public float jumpForce = 12;
-    [Header("Collision Info")]
-    [SerializeField] private float groundCheckDistance ;
-    [SerializeField] private float wallCheckDistance ;
+    public float jumpWallForce = 3;
+    public float dashForce = 20;
+    public float dashTime = 0.2f;
+
+    [Header("Collision Info")] [SerializeField]
+    private float groundCheckDistance;
+
+    [SerializeField] private float wallCheckDistance;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsWall;
 
-    private bool faceRight = true;
+    [HideInInspector] public bool faceRight = true;
+
     #region State
 
     private StateMachine stateMachine;
+    public IdleState IdleState;
+    public MoveState MoveState;
+    public JumpState JumpState;
+    public GroundedState GroundedState;
+    public WallSlideState WallSlideState;
+    public DashState DashState;
+    public AirState AirState;
+    public JumpWallState JumpWallState;
 
     #endregion
 
@@ -39,33 +53,65 @@ public class Player : MonoBehaviour
     {
         stateMachine = new StateMachine();
         // Define States
-        var idleState = new IdleState(this, playerAnimator, AnimationKeys.Idle);
-        var moveState = new MoveState(this, playerAnimator, AnimationKeys.Move);
-        var jumpState = new JumpState(this, playerAnimator, AnimationKeys.JumpFall);
-        var groundedState = new GroundedState(this, playerAnimator, AnimationKeys.Idle);
-        // Inject Transitions
-        stateMachine.InjectTransition(idleState, moveState, new FuncPredicate(() => xInput != 0));
-        stateMachine.InjectTransition(idleState, jumpState, new FuncPredicate(() => yInput != 0));
-        stateMachine.InjectTransition(jumpState,idleState, new FuncPredicate(IsOnGround));
-        stateMachine.AddAnyTransition(idleState, new FuncPredicate(() => xInput == 0 && yInput == 0 && rb.velocity == Vector2.zero));
+        IdleState = new IdleState(this, stateMachine, playerAnimator, AnimationKeys.Idle);
+        MoveState = new MoveState(this, stateMachine, playerAnimator, AnimationKeys.Move);
+        JumpState = new JumpState(this, stateMachine, playerAnimator, AnimationKeys.Jump);
+        AirState = new AirState(this, stateMachine, playerAnimator, AnimationKeys.Fall);
+        GroundedState = new GroundedState(this, stateMachine, playerAnimator, AnimationKeys.Idle);
+        DashState = new DashState(this, stateMachine, playerAnimator, AnimationKeys.Dash);
+        WallSlideState = new WallSlideState(this, stateMachine, playerAnimator, AnimationKeys.WallSlide);
+        JumpWallState = new JumpWallState(this, stateMachine, playerAnimator, AnimationKeys.Jump);
+        // // Inject Transitions
+        // stateMachine.InjectTransition(IdleState, MoveState, new FuncPredicate(() => xInput != 0));
+        // stateMachine.InjectTransition(IdleState, JumpState, new FuncPredicate(() => yInput > 0));
+        // stateMachine.InjectTransition(MoveState, JumpState, new FuncPredicate(() => yInput > 0));
+        // stateMachine.InjectTransition(MoveState, FallState, new FuncPredicate(() => rb.velocity.y < 0));
+        // stateMachine.InjectTransition(JumpState, FallState, new FuncPredicate(() => rb.velocity.y < 0));
+        // stateMachine.InjectTransition(JumpState, WallSlideState, new FuncPredicate(() => IsWallDetected() && xInput * faceDir > 0));
+        // stateMachine.InjectTransition(FallState, IdleState, new FuncPredicate(() => IsOnGround() && rb.velocity == Vector2.zero &&  xInput == 0));
+        // stateMachine.InjectTransition(FallState, MoveState, new FuncPredicate(() => IsOnGround() && xInput != 0 && rb.velocity.y == 0));
+        // stateMachine.InjectTransition(FallState, WallSlideState, new FuncPredicate(() => IsWallDetected() && xInput * faceDir > 0));
+        // stateMachine.InjectTransition(WallSlideState, FallState, new FuncPredicate(() => xInput * faceDir == 0));
+        // stateMachine.InjectTransition(WallSlideState, JumpWallState, new FuncPredicate(() => yInput > 0));
+        // stateMachine.InjectTransition(JumpWallState, WallSlideState, new FuncPredicate(() => IsWallDetected() && xInput * faceDir > 0));
+        //
+        //
+        // //stateMachine.InjectTransition(idleState, dashState, new FuncPredicate(() => Input.GetKeyDown(KeyCode.LeftShift)));
+        //
+        // stateMachine.AddAnyTransition(IdleState,
+        //                               new FuncPredicate(() => xInput == 0 && yInput == 0 && rb.velocity == Vector2.zero));
+        // stateMachine.AddAnyTransition(DashState, new FuncPredicate(() => Input.GetKeyDown(KeyCode.LeftShift)));
         //Initial State
-        stateMachine.SetState(idleState);
+        stateMachine.SetState(IdleState);
     }
     private void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
-        playerAnimator.SetFloat(AnimationKeys.JumpFall_YVeclocity, rb.velocity.y);
         stateMachine.Update();
         UpdateDirection();
+        CheckDashInput();
+    }
+
+    private void FixedUpdate()
+    {
+        stateMachine.FixedUpdate();
+    }
+    private void CheckDashInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            dashDir = Input.GetAxisRaw("Horizontal");
+            if (dashDir == 0)
+                dashDir = faceDir;
+            stateMachine.ChangeState(DashState);
+        }
     }
     private void UpdateDirection()
     {
-        if(rb.velocity.x > 0.01f && !faceRight)
+        if (rb.velocity.x > 0.01f && !faceRight)
         {
             Flip();
         }
-        else if(rb.velocity.x < -0.01f && faceRight)
+        else if (rb.velocity.x < -0.01f && faceRight)
         {
             Flip();
         }
@@ -74,14 +120,19 @@ public class Player : MonoBehaviour
     {
         faceRight = !faceRight;
         transform.Rotate(0, 180, 0);
+        //Debug.Break();
     }
     public bool IsOnGround()
     {
         return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
+    public bool IsWallDetected()
+    {
+        return Physics2D.Raycast(wallCheck.position, faceRight ? Vector2.right : Vector2.left, wallCheckDistance, whatIsWall);
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
-        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y ));
+        Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
     }
 }

@@ -7,24 +7,26 @@ public class StateMachine
     {
     }
     public StateNode CurrentState { get; private set; }
+    public StateNode PreState { get; private set; }
     private Dictionary<Type, StateNode> nodes = new();
     private HashSet<Transition> anyTransitions = new();
     public void Update()
     {
-        var transition = GetTransition();
-        if (transition != null)
-        {
-            ChangeState(transition.To);
-        }
+        // var transition = GetTransition();
+        // if (transition != null)
+        // {
+        //     ChangeState(transition.To);
+        // }
         CurrentState?.State.Update();
     }
-    private void ChangeState(IState state)
+    public void ChangeState(IState state)
     {
         if(CurrentState.State == state) return;
-
-        var curSate = CurrentState;
-        var nextState = nodes[state.GetType()].State;
         
+        var curSate = CurrentState;
+        var nextState = GetOrAddNode(state).State;
+        
+        PreState = curSate;
         CurrentState = nodes[state.GetType()];
         curSate?.State.Exit();
         nextState?.Enter();
@@ -35,7 +37,7 @@ public class StateMachine
     }
     public void AddAnyTransition(IState to, IPredicate condition)
     {
-        anyTransitions.Add(new(to, condition));
+        anyTransitions.Add(new(GetOrAddNode(to).State, condition));
     }
     private StateNode GetOrAddNode(IState state)
     {
@@ -49,16 +51,21 @@ public class StateMachine
     }
     public void SetState(IState state)
     {
-        CurrentState = nodes[state.GetType()];
+        var stateNode = GetOrAddNode(state);
+        CurrentState = stateNode;
         CurrentState?.State.Enter();
     }
     private ITransition GetTransition()
     {
-        foreach(Transition transition in anyTransitions.Where(transition => transition.Condition.Evaluate()))
+        foreach(Transition transition in anyTransitions.Where(transition => transition.Condition.Evaluate() && transition.To != CurrentState.State))
         {
             return transition;
         }
         return CurrentState.transitions.FirstOrDefault(transition => transition.Condition.Evaluate());
 
+    }
+    public void FixedUpdate()
+    {
+        CurrentState?.State.FixedUpdate();
     }
 }
