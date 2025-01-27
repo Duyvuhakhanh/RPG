@@ -8,7 +8,6 @@ public class Enemy : Enity
 
     public float idleTime;
     [Header("Attack Info")]
-    public float attackRange;
     public LayerMask whatIsPlayer;
     protected override void Awake()
     {
@@ -32,6 +31,8 @@ public class Enemy : Enity
     {
         base.OnDrawGizmos();
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackRange * faceDir, transform.position.y, transform.position.z));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackCheckRadius * faceDir, transform.position.y, transform.position.z));
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + playerCheckRange* faceDir, transform.position.y, transform.position.z));
     }
 }

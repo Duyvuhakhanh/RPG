@@ -14,7 +14,7 @@ public class SkeletonBattleState : SkeletonBaseState
     {
         base.Update();
         var playerInfo = skeleton.IsPlayerInSight();
-        if (playerInfo && playerInfo.distance < skeleton.attackRange)
+        if (playerInfo && playerInfo.distance < skeleton.attackCheckRadius)
         {
             stateMachine.ChangeState(skeleton.attackState);
             return;

@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 7818109809344237441}
   - component: {fileID: 7818109809344237440}
   - component: {fileID: 7818109809344237443}
+  - component: {fileID: 4749425337970127145}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -118,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24c1e71829f4a0c9fd0f0b7051d7cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockBackDirection: {x: 7, y: 5}
+  knockBackTime: 0.07
   attackCheck: {fileID: 1833682388211368749}
   attackCheckRadius: 0.9
   groundCheckDistance: 0.07
@@ -131,13 +134,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   faceRight: 1
-  playerCheckRange: 2.08
+  playerCheckRange: 2.9
   moveSpeed: 2
   idleTime: 1
-  attackRange: 1.52
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &4749425337970127145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818109809344237442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2a0e0ca1544d78b0b26f80123677ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHitMat: {fileID: 2100000, guid: bd1a2395d960dc94db9924fa8c09c8c7, type: 2}
+  effectTime: 0.2
 --- !u!1 &7818109809378477876
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 public abstract class Enity : MonoBehaviour, IDamgeable
@@ -6,12 +7,17 @@ public abstract class Enity : MonoBehaviour, IDamgeable
     #region Compoment
 
     protected Animator animator;
+    protected EnityFx enityFx;
     public Rigidbody2D rb { get; protected set; }
     public float dashDir { get; protected set; }
     public int faceDir => faceRight ? 1 : -1;
     public bool isBusy { get; protected set; }
     #endregion
-
+    [FormerlySerializedAs("knockBackForce")]
+    [Header("KnockBack Info")]
+    [SerializeField] protected Vector2 knockBackDirection;
+    [SerializeField] protected float knockBackTime;
+    private bool isKnockBack;
     [Header("Collision Info")] 
     public Transform attackCheck;
     public float attackCheckRadius;
@@ -25,11 +31,14 @@ public abstract class Enity : MonoBehaviour, IDamgeable
     [SerializeField] protected LayerMask whatIsWall;
 
     [HideInInspector] public bool faceRight = true;
+    public abstract void AnimationFinishTriger();
+
     #region Direction
     protected virtual void Awake()
     {
         if (animator == null) animator = GetComponentInChildren<Animator>();
         if (rb == null) rb = GetComponentInChildren<Rigidbody2D>();
+        if (enityFx == null) enityFx = GetComponent<EnityFx>();
     }
     protected virtual void UpdateDirection()
     {
@@ -70,22 +79,30 @@ public abstract class Enity : MonoBehaviour, IDamgeable
 
     public void SetVelocity(Vector2 vector2)
     {
+        if(isKnockBack) return;
         rb.velocity = vector2;
+        UpdateDirection();
     }
 
     #endregion
     protected virtual void Update()
     {
-        UpdateDirection();
     }
     protected virtual void FixedUpdate()
     {
     }
-    public abstract void AnimationFinishTriger();
 
-
+    private IEnumerator IKnockBack()
+    {
+        isKnockBack = true;
+        rb.velocity = (new Vector2(knockBackDirection.x * -faceDir, knockBackDirection.y)); 
+        yield return new WaitForSeconds(knockBackTime);
+        rb.velocity = Vector2.zero;
+        isKnockBack = false;
+    }
     public void TakeDamage(int damage)
     {
-        Debug.Log("Take Damage");
+        enityFx.OnHitFx();
+        StartCoroutine(IKnockBack());
     }
 }
