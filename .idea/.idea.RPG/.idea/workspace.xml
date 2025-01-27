@@ -5,32 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="095d97d0-81d1-46f7-a264-7edcd999b022" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySkeletonAnimationTriggers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySkeletonAnimationTriggers.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonAttackState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonAttackState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonBaseState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IAnimationTrigger.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IAnimationTrigger.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IDamgeable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IDamgeable.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/EnemyAnim.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/EnemyAnim.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/skeletonIdle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/skeletonIdle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/skeletonMove.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/skeletonMove.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AnimationKeys.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AnimationKeys.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy_Skeleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy_Skeleton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnenmyBattleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonBaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnenmyBattleState.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnenmyGroundedState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonGroundedState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnenmyGroundedState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonGroundedState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonBattleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonBattleState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonIdleBaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonIdleBaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonMoveState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/SkeletonMoveState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySkeletonAnimationTriggers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemySkeletonAnimationTriggers.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerAnimationTriggers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerAnimationTriggers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/BaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/BaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/PlayerBaseState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/PlayerBaseState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/States/PrimeAttackState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/States/PrimeAttackState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +119,7 @@
       <workItem from="1737805546429" duration="4838000" />
       <workItem from="1737820731891" duration="12161000" />
       <workItem from="1737957805403" duration="13667000" />
-      <workItem from="1737990092948" duration="6301000" />
+      <workItem from="1737990092948" duration="7929000" />
     </task>
     <servers />
   </component>

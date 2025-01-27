@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5353497849755247509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: -0.025, z: 0}
+  m_LocalPosition: {x: 0.892, y: -0.142, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCheck: {fileID: 1833682388211368749}
-  attackCheckRadius: 0.79
+  attackCheckRadius: 0.9
   groundCheckDistance: 0.07
   wallCheckDistance: 0.12
   groundCheck: {fileID: 7818109810779256139}
@@ -131,13 +131,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   faceRight: 1
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
   playerCheckRange: 2.08
   moveSpeed: 2
   idleTime: 1
-  attackRange: 1.13
+  attackRange: 1.52
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &7818109809378477876
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_SortingLayerID: -1707607539
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1154428428, guid: 687df074731fbf744b668d2275dbb675, type: 3}
+  m_Sprite: {fileID: 1271217771, guid: cc71415bc56e07742a0bede3d4be6d2f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

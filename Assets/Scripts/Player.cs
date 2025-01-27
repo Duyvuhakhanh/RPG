@@ -17,6 +17,7 @@ public class Player : Enity
     public float jumpWallTime = 0.4f;
     public float dashForce = 20;
     public float dashTime = 0.2f;
+    public LayerMask whatIsEnemy;
 
     #region State
     public IdleState IdleState;
@@ -28,6 +29,7 @@ public class Player : Enity
     public AirState AirState;
     public JumpWallState JumpWallState;
     public PrimeAttackState PrimeAttackState;
+
     #endregion
 
 

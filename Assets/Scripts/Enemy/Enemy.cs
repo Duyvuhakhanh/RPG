@@ -1,7 +1,6 @@
 using UnityEngine;
 public class Enemy : Enity
 {
-    [SerializeField] protected LayerMask whatIsPlayer;
     [SerializeField] protected float playerCheckRange;
     public EnemyStateMachine enemyStateMachine { get; private set; }
     [Header("Move Settings")]
@@ -10,6 +9,7 @@ public class Enemy : Enity
     public float idleTime;
     [Header("Attack Info")]
     public float attackRange;
+    public LayerMask whatIsPlayer;
     protected override void Awake()
     {
         base.Awake();

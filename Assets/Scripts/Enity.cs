@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Serialization;
-public abstract class Enity : MonoBehaviour
+public abstract class Enity : MonoBehaviour, IDamgeable
 {
 
     #region Compoment
@@ -84,4 +84,8 @@ public abstract class Enity : MonoBehaviour
     public abstract void AnimationFinishTriger();
 
 
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("Take Damage");
+    }
 }

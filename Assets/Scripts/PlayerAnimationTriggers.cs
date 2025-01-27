@@ -1,9 +1,22 @@
 using UnityEngine;
-public class PlayerAnimationTriggers : MonoBehaviour
+public class PlayerAnimationTriggers : MonoBehaviour, IAnimationTrigger
 {
-    public void AnimationTrigger()
+    Player player => GetComponentInParent<Player>();
+
+    public void AnimationFinishTrigger()
     {
-        Player player = GetComponentInParent<Player>();
         player.AnimationFinishTriger();
+    }
+    public void AttackAnimationTrigger()
+    {
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, player.attackCheckRadius, player.whatIsEnemy);
+        foreach(var target in hitTargets)
+        {
+            var targetInfo = target.GetComponent<IDamgeable>();
+            if(targetInfo != null)
+            {
+                targetInfo.TakeDamage(1);
+            }
+        }
     }
 }
