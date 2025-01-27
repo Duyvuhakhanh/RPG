@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class Enemy_Skeleton : Enemy
 {
@@ -9,6 +8,7 @@ public class Enemy_Skeleton : Enemy
     public SkeletonIdleBaseState idleState;
     public SkeletonMoveState moveState;
     public SkeletonBattleState battleState;
+    public SkeletonAttackState attackState;
 
     #endregion
 
@@ -21,6 +21,7 @@ public class Enemy_Skeleton : Enemy
         idleState = new(this, enemyStateMachine, animator, AnimationKeys.Idle, this);
         moveState = new(this, enemyStateMachine, animator, AnimationKeys.Move, this);
         battleState = new(this, enemyStateMachine, animator, AnimationKeys.Move, this);
+        attackState = new(this, enemyStateMachine, animator, AnimationKeys.Attack, this);
         enemyStateMachine.SetState(idleState);
     }
     protected override void Update()
@@ -30,3 +31,4 @@ public class Enemy_Skeleton : Enemy
 
 
 }
+

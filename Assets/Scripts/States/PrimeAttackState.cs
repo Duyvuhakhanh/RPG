@@ -20,7 +20,6 @@ public class PrimeAttackState : PlayerBaseState
         stateTimmer = 0.1f;
         float attackDirection = player.faceDir;
         xInput = Input.GetAxisRaw("Horizontal");
-        Debug.Log($"Enter xInput: {xInput}");
         if(xInput != 0)
         {
             attackDirection = xInput;

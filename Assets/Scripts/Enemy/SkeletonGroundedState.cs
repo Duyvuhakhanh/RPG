@@ -1,10 +1,8 @@
 using UnityEngine;
-public class EnenmyGroundedState : EnemyBaseState
+public class SkeletonGroundedState : SkeletonBaseState
 {
-    protected Enemy_Skeleton skeleton;
-    public EnenmyGroundedState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) :  base(enemy, stateMachine, animator, animationKey)
+    public SkeletonGroundedState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey, skeleton)
     {
-        this.skeleton = skeleton;
     }
     public override void Enter()
     {
@@ -17,7 +15,7 @@ public class EnenmyGroundedState : EnemyBaseState
     public override void Update()
     {
         base.Update();
-        if (!enemy.IsPlayerDetected())
+        if (enemy.IsPlayerInSight())
         {
             enemy.enemyStateMachine.ChangeState(skeleton.battleState);
         }

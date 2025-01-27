@@ -27,8 +27,5 @@ public class PlayerBaseState : BaseState
 
     }
  
-    public void AnimationTrigger()
-    {
-        triggerCalled = true;
-    }
+
 }

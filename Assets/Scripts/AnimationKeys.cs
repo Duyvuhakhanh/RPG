@@ -7,4 +7,4 @@ public static class AnimationKeys
     public const string Fall = "Fall";
     public const string WallSlide = "WallSlide";
     public const string PrimeAttack = "Attack";
-}
+    public const string Attack = "Attack";}

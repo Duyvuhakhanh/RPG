@@ -11,7 +11,10 @@ public abstract class Enity : MonoBehaviour
     public int faceDir => faceRight ? 1 : -1;
     public bool isBusy { get; protected set; }
     #endregion
+
     [Header("Collision Info")] 
+    public Transform attackCheck;
+    public float attackCheckRadius;
     [SerializeField]
     protected float groundCheckDistance;
 
@@ -55,10 +58,12 @@ public abstract class Enity : MonoBehaviour
     {
         return Physics2D.Raycast(horizontalCheck.position, faceRight ? Vector2.right : Vector2.left, wallCheckDistance, whatIsWall);
     }
-    private void OnDrawGizmos()
+    protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(horizontalCheck.position, new Vector2(horizontalCheck.position.x + wallCheckDistance, horizontalCheck.position.y));
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
     #region Velocity
@@ -76,5 +81,7 @@ public abstract class Enity : MonoBehaviour
     protected virtual void FixedUpdate()
     {
     }
+    public abstract void AnimationFinishTriger();
+
 
 }

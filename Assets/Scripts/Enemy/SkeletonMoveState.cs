@@ -1,7 +1,6 @@
 using UnityEngine;
-public class SkeletonMoveState : EnenmyGroundedState
+public class SkeletonMoveState : SkeletonGroundedState
 {
-
 
     public SkeletonMoveState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey, skeleton)
     {

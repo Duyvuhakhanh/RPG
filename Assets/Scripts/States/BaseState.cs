@@ -23,4 +23,8 @@ public class BaseState : IState
     public virtual void FixedUpdate()
     {
     }
+    public virtual void AnimationTrigger()
+    {
+        triggerCalled = true;
+    }
 }

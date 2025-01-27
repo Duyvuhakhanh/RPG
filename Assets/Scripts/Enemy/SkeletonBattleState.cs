@@ -1,18 +1,35 @@
 using UnityEngine;
-public class SkeletonBattleState : EnemyBaseState
+public class SkeletonBattleState : SkeletonBaseState
 {
-    protected Enemy_Skeleton skeleton;
-
-    public SkeletonBattleState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey)
+    private float moveDirection;
+    private Player targetPlayer;
+    public SkeletonBattleState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey, skeleton)
     {
-        this.skeleton = skeleton;
+    }
+    public override void Enter()
+    {
+        base.Enter();
     }
     public override void Update()
     {
         base.Update();
-        if (skeleton.IsPlayerDetected())
+        var playerInfo = skeleton.IsPlayerInSight();
+        if (playerInfo && playerInfo.distance < skeleton.attackRange)
         {
-            stateMachine.ChangeState(skeleton.moveState);
+            stateMachine.ChangeState(skeleton.attackState);
+            return;
         }
+
+        if (playerInfo)
+        {
+            targetPlayer = playerInfo.collider.GetComponent<Player>();
+            moveDirection = (targetPlayer.transform.position - enemy.transform.position).normalized.x;
+            skeleton.rb.velocity = new Vector2(skeleton.moveSpeed * moveDirection, skeleton.rb.velocity.y);
+        }
+        else
+        {
+            stateMachine.ChangeState(skeleton.idleState);
+        }
+
     }
 }

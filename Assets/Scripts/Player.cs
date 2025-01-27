@@ -6,8 +6,10 @@ public class Player : Enity
 {
     protected PlayerStateMachine PlayerStateMachine;
 
-    [Header("Attack Settings")] 
+    [Header("Attack Info")] 
     public Vector2[] attackMovement;
+
+
     [Header("Player Settings")] 
     public float speed = 5;
     public float jumpForce = 12;
@@ -78,6 +80,10 @@ public class Player : Enity
         yield return new WaitForSeconds(time);
         isBusy = false;
     }
-    public virtual void AnimationTrigger() => PlayerStateMachine.CurrentState.AnimationTrigger();
+    public override void AnimationFinishTriger()
+    {
+        PlayerStateMachine.CurrentState.AnimationTrigger();
+    }
+
 
 }

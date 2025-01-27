@@ -1,5 +1,5 @@
 using UnityEngine;
-public class SkeletonIdleBaseState : EnenmyGroundedState
+public class SkeletonIdleBaseState : SkeletonGroundedState
 {
 
     public SkeletonIdleBaseState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey, skeleton)
