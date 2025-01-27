@@ -3,7 +3,7 @@ public class MoveState : GroundedState
 {
 
 
-    public MoveState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public MoveState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -20,11 +20,11 @@ public class MoveState : GroundedState
         base.Update();
         if(xInput == 0)
         {
-            stateMachine.ChangeState(player.IdleState);
+            PlayerStateMachine.ChangeState(player.IdleState);
         }
         if (player.rb.velocity.y < 0)
         {
-            stateMachine.ChangeState(player.AirState);
+            PlayerStateMachine.ChangeState(player.AirState);
         }
 
     }

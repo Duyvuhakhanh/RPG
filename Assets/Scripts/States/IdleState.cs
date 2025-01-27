@@ -1,7 +1,7 @@
 using UnityEngine;
 public class IdleState : GroundedState
 {
-    public IdleState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public IdleState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -15,7 +15,7 @@ public class IdleState : GroundedState
         base.Update();
         if(xInput != 0 && !player.isBusy)
         {
-            stateMachine.ChangeState(player.MoveState);
+            PlayerStateMachine.ChangeState(player.MoveState);
         }
     }
 

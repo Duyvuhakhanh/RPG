@@ -1,8 +1,8 @@
 using UnityEngine;
-public class WallSlideState : BaseState
+public class WallSlideState : PlayerBaseState
 {
     private float frictionOnWall = 0.5f;
-    public WallSlideState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public WallSlideState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -20,17 +20,17 @@ public class WallSlideState : BaseState
         
         if(yInput > 0)
         {
-            stateMachine.ChangeState(player.JumpWallState);
+            PlayerStateMachine.ChangeState(player.JumpWallState);
             return;
         }
         if(xInput != 0 && xInput * player.faceDir < 0)
         {
-            stateMachine.ChangeState(player.IdleState);
+            PlayerStateMachine.ChangeState(player.IdleState);
         }
         player.rb.velocity = new Vector2(0, yInput >= 0 ? player.rb.velocity.y * frictionOnWall : player.rb.velocity.y);
         if (player.IsOnGround())
         {
-            stateMachine.ChangeState(player.IdleState);
+            PlayerStateMachine.ChangeState(player.IdleState);
         }
 
         

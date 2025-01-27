@@ -1,8 +1,8 @@
 using UnityEngine;
-public class JumpWallState : BaseState
+public class JumpWallState : PlayerBaseState
 {
 
-    public JumpWallState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public JumpWallState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -18,7 +18,7 @@ public class JumpWallState : BaseState
 
         if (stateTimmer < 0)
         {
-            stateMachine.ChangeState(player.AirState);
+            PlayerStateMachine.ChangeState(player.AirState);
         }
 
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
-public class JumpState : BaseState
+public class JumpState : PlayerBaseState
 {
-    public JumpState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public JumpState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -19,7 +19,7 @@ public class JumpState : BaseState
         base.Update();
         if (player.rb.velocity.y < 0)
         {
-            stateMachine.ChangeState(player.AirState);
+            PlayerStateMachine.ChangeState(player.AirState);
         }
     }
     public override void FixedUpdate()

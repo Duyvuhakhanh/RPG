@@ -1,7 +1,7 @@
 using UnityEngine;
-public class GroundedState : BaseState
+public class GroundedState : PlayerBaseState
 {
-    public GroundedState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public GroundedState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -17,11 +17,11 @@ public class GroundedState : BaseState
         base.Update();
         if (yInput > 0)
         {
-            stateMachine.ChangeState(player.JumpState);
+            PlayerStateMachine.ChangeState(player.JumpState);
         }
         if (Input.GetMouseButton(0))
         {
-            stateMachine.ChangeState(player.PrimeAttackState);
+            PlayerStateMachine.ChangeState(player.PrimeAttackState);
         }
     }
 }

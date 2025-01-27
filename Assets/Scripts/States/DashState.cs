@@ -1,15 +1,15 @@
 using UnityEngine;
-public class DashState : BaseState
+public class DashState : PlayerBaseState
 {
-    private BaseState preState;
-    public DashState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    private PlayerBaseState preState;
+    public DashState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
     {
         base.Enter();
         stateTimmer = player.dashTime;
-        preState = stateMachine.PreState;
+        preState = PlayerStateMachine.PreState;
         OnDash();
         player.rb.velocity = new Vector2(player.rb.velocity.x, 0);
 
@@ -20,7 +20,7 @@ public class DashState : BaseState
         base.Update();
         if (!player.IsOnGround() && player.IsWallDetected())
         {
-            stateMachine.ChangeState(player.WallSlideState);
+            PlayerStateMachine.ChangeState(player.WallSlideState);
         }
         OnDash();
         if(stateTimmer <= 0)
@@ -36,7 +36,7 @@ public class DashState : BaseState
     }
     public override void Exit()
     {
-        stateMachine.ChangeState(preState.GetType() == typeof(JumpState) || preState.GetType() == typeof(JumpWallState)? player.AirState : preState);
+        PlayerStateMachine.ChangeState(preState.GetType() == typeof(JumpState) || preState.GetType() == typeof(JumpWallState)? player.AirState : preState);
         player.rb.velocity = new Vector2(0, player.rb.velocity.y);
         base.Exit();
     }

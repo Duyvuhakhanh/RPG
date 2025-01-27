@@ -1,12 +1,12 @@
 using UnityEngine;
-public class PrimeAttackState : BaseState
+public class PrimeAttackState : PlayerBaseState
 {
     private static readonly int ComboCounter = Animator.StringToHash("ComboCounter");
     private static readonly int Attack = Animator.StringToHash("Attack");
     private int comboCounter;
     private float lastTimeAttack;
     private float comboWindow = 2;
-    public PrimeAttackState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public PrimeAttackState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -38,7 +38,7 @@ public class PrimeAttackState : BaseState
         }
         if (triggerCalled)
         {
-            stateMachine.ChangeState(player.IdleState);
+            PlayerStateMachine.ChangeState(player.IdleState);
         }
     }
     public override void Exit()

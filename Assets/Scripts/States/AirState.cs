@@ -1,8 +1,8 @@
 using UnityEngine;
-public class AirState : BaseState
+public class AirState : PlayerBaseState
 {
     private float speedXOnAir = 0.8f;
-    public AirState(Player player, StateMachine stateMachine, Animator animator, string animationKey) : base(player, stateMachine, animator, animationKey)
+    public AirState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
     {
     }
     public override void Enter()
@@ -18,11 +18,11 @@ public class AirState : BaseState
         base.Update();
         if (player.IsWallDetected() && xInput * player.faceDir > 0)
         {
-            stateMachine.ChangeState(player.WallSlideState);
+            PlayerStateMachine.ChangeState(player.WallSlideState);
         }
         if (player.IsOnGround())
         {
-            stateMachine.ChangeState(player.IdleState);
+            PlayerStateMachine.ChangeState(player.IdleState);
         }
 
     }
