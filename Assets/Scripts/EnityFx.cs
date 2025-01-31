@@ -7,6 +7,7 @@ public class EnityFx : MonoBehaviour
     private Material originalMat;
     [SerializeField] private Material onHitMat;
     [SerializeField] private float effectTime = 0.2f;
+    private IEnumerator blinkCoroutine;
     private void Awake()
     {
         if(spriteRenderer == null)
@@ -28,5 +29,35 @@ public class EnityFx : MonoBehaviour
     private void ResetMaterial()
     {
         spriteRenderer.material = originalMat;
+    }
+    public void BlinkRed(float repeatTime)
+    {
+        CancelBlink();
+        blinkCoroutine = IBlinkRed(repeatTime);
+        StartCoroutine(blinkCoroutine);
+    }
+    private IEnumerator IBlinkRed(float repeatTime)
+    {
+        while (true)
+        {
+            RedColorBlink();
+            yield return new WaitForSeconds(repeatTime);
+        }
+    }
+    private void RedColorBlink()
+    {
+        if(spriteRenderer.color == Color.red)
+        {
+            spriteRenderer.color = Color.white;
+        }
+        else
+        {
+            spriteRenderer.color = Color.red;
+        }
+    }
+    public void CancelBlink()
+    {
+        StopAllCoroutines();
+        spriteRenderer.color = Color.white;
     }
 }

@@ -7,7 +7,7 @@ public abstract class Enity : MonoBehaviour, IDamgeable
     #region Compoment
 
     protected Animator animator;
-    protected EnityFx enityFx;
+    [HideInInspector]public EnityFx enityFx;
     public Rigidbody2D rb { get; protected set; }
     public float dashDir { get; protected set; }
     public int faceDir => faceRight ? 1 : -1;
@@ -79,6 +79,13 @@ public abstract class Enity : MonoBehaviour, IDamgeable
 
     public void SetVelocity(Vector2 vector2)
     {
+        if(isKnockBack) return;
+        rb.velocity = vector2;
+        UpdateDirection();
+    }
+    public void SetVelocity(float x, float y)
+    {
+        Vector2 vector2 = new Vector2(x, y);
         if(isKnockBack) return;
         rb.velocity = vector2;
         UpdateDirection();

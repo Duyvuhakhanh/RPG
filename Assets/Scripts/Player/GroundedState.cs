@@ -23,5 +23,9 @@ public class GroundedState : PlayerBaseState
         {
             PlayerStateMachine.ChangeState(player.PrimeAttackState);
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PlayerStateMachine.ChangeState(player.CounterAttackState);
+        }
     }
 }

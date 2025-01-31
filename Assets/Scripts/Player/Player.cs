@@ -5,10 +5,11 @@ using UnityEngine;
 public class Player : Enity
 {
     protected PlayerStateMachine PlayerStateMachine;
-
+    
     [Header("Attack Info")] 
     public Vector2[] attackMovement;
 
+    public float counterAttackDuration = 1;
 
     [Header("Player Settings")] 
     public float speed = 5;
@@ -29,6 +30,7 @@ public class Player : Enity
     public AirState AirState;
     public JumpWallState JumpWallState;
     public PrimeAttackState PrimeAttackState;
+    public CounterAttackState CounterAttackState;
 
     #endregion
 
@@ -46,6 +48,7 @@ public class Player : Enity
         WallSlideState = new WallSlideState(this, PlayerStateMachine, animator, AnimationKeys.WallSlide);
         JumpWallState = new JumpWallState(this, PlayerStateMachine, animator, AnimationKeys.Jump);
         PrimeAttackState = new PrimeAttackState(this, PlayerStateMachine, animator, AnimationKeys.PrimeAttack);
+        CounterAttackState = new CounterAttackState(this, PlayerStateMachine, animator, AnimationKeys.CounterAttack);
         PlayerStateMachine.SetState(IdleState);
     }
     protected override void Update()

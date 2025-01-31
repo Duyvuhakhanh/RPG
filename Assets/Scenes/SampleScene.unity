@@ -378,9 +378,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1833682388211368749, guid: 7d6ff876a0e1e824db7bc897f92bbf57, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833682388211368749, guid: 7d6ff876a0e1e824db7bc897f92bbf57, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.123
+      objectReference: {fileID: 0}
     - target: {fileID: 7818109809344237442, guid: 7d6ff876a0e1e824db7bc897f92bbf57, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7818109809344237443, guid: 7d6ff876a0e1e824db7bc897f92bbf57, type: 3}
+      propertyPath: playerCheckRange
+      value: 1.63
       objectReference: {fileID: 0}
     - target: {fileID: 7818109809344237446, guid: 7d6ff876a0e1e824db7bc897f92bbf57, type: 3}
       propertyPath: m_RootOrder
