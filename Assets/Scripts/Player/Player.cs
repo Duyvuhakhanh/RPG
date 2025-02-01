@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Abilities;
 using UnityEngine;
 public class Player : Enity
 {
@@ -67,7 +68,7 @@ public class Player : Enity
     private void CheckDashInput()
     {
         if(IsWallDetected()) return;
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && AbilityManager.instance.dashAbility.CheckAndUseAbility())
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)

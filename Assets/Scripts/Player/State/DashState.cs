@@ -1,3 +1,4 @@
+using Abilities;
 using UnityEngine;
 public class DashState : PlayerBaseState
 {
@@ -8,6 +9,7 @@ public class DashState : PlayerBaseState
     public override void Enter()
     {
         base.Enter();
+        AbilityManager.instance.cloneAbility.CreateClone(player.transform);
         stateTimmer = player.dashTime;
         preState = PlayerStateMachine.PreState;
         OnDash();
