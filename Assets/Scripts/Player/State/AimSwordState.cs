@@ -1,12 +1,10 @@
 using UnityEngine;
-namespace Enemy.Skeleton
+namespace Player.State
 {
-    public class SkeletonBaseState : EnemyBaseState
+    public class AimSwordState : PlayerBaseState
     {
-        protected Enemy_Skeleton skeleton;
-        public SkeletonBaseState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey)
+        public AimSwordState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
         {
-            this.skeleton = skeleton;
         }
         public override void Enter()
         {
@@ -19,6 +17,10 @@ namespace Enemy.Skeleton
         public override void Update()
         {
             base.Update();
+            if(Input.GetKeyUp(KeyCode.Mouse1))
+            {
+                PlayerStateMachine.ChangeState(player.IdleState);
+            }
         }
         public override void FixedUpdate()
         {

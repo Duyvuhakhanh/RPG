@@ -1,16 +1,19 @@
+using Player.State;
 using UnityEngine;
-public class EnemyBaseState : BaseState
+namespace Enemy
 {
-    protected Enemy enemy;
-    protected EnemyStateMachine stateMachine;
-    
-    public EnemyBaseState(Enemy enemy, EnemyStateMachine stateMachine,Animator animator, string animationKey)
+    public class EnemyBaseState : BaseState
     {
-        this.enemy = enemy;
-        this.stateMachine = stateMachine;
-        base.animator = animator;
-        this.hashKey = Animator.StringToHash(animationKey);
+        protected Enemy enemy;
+        protected EnemyStateMachine stateMachine;
+    
+        public EnemyBaseState(Enemy enemy, EnemyStateMachine stateMachine,Animator animator, string animationKey)
+        {
+            this.enemy = enemy;
+            this.stateMachine = stateMachine;
+            base.animator = animator;
+            this.hashKey = Animator.StringToHash(animationKey);
+        }
+
     }
-    
-    
 }

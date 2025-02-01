@@ -1,5 +1,8 @@
-public interface IAnimationTrigger
+namespace Animation
 {
-    public void AnimationFinishTrigger();
-    public void AttackAnimationTrigger();
+    public interface IAnimationTrigger
+    {
+        public void AnimationFinishTrigger();
+        public void AttackAnimationTrigger();
+    }
 }

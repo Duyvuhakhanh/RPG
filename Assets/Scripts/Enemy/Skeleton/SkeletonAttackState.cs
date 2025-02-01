@@ -1,29 +1,32 @@
 using UnityEngine;
-public class SkeletonAttackState : SkeletonBaseState
+namespace Enemy.Skeleton
 {
-    public SkeletonAttackState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey, skeleton)
+    public class SkeletonAttackState : SkeletonBaseState
     {
-    }
-    public override void Enter()
-    {
-        base.Enter();
-        skeleton.SetVelocity(Vector2.zero);
-    }
-    public override void Exit()
-    {
-        base.Exit();
-    }
-    public override void Update()
-    {
-        base.Update();
-        if(triggerCalled)
+        public SkeletonAttackState(Enemy enemy, EnemyStateMachine stateMachine, Animator animator, string animationKey, Enemy_Skeleton skeleton) : base(enemy, stateMachine, animator, animationKey, skeleton)
         {
-            stateMachine.ChangeState(skeleton.battleState);
         }
+        public override void Enter()
+        {
+            base.Enter();
+            skeleton.SetVelocity(Vector2.zero);
+        }
+        public override void Exit()
+        {
+            base.Exit();
+        }
+        public override void Update()
+        {
+            base.Update();
+            if(triggerCalled)
+            {
+                stateMachine.ChangeState(skeleton.battleState);
+            }
 
-    }
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
+        }
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+        }
     }
 }

@@ -1,41 +1,41 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-public class PlayerStateMachine
+namespace Player.State
 {
-    public PlayerStateMachine()
+    public class PlayerStateMachine
     {
-    }
-    public PlayerBaseState CurrentState { get; private set; }
-    public PlayerBaseState PreState { get; private set; }
-    public void Update()
-    {
+        public PlayerStateMachine()
+        {
+        }
+        public PlayerBaseState CurrentState { get; private set; }
+        public PlayerBaseState PreState { get; private set; }
+        public void Update()
+        {
 
-        CurrentState?.Update();
-    }
-    public void ChangeState(PlayerBaseState state)
-    {
+            CurrentState?.Update();
+        }
+        public void ChangeState(PlayerBaseState state)
+        {
         
-        if(CurrentState == state) return;
+            if(CurrentState == state) return;
         
-        var curSate = CurrentState;
-        var nextState = state;
+            var curSate = CurrentState;
+            var nextState = state;
         
-        PreState = curSate;
-        CurrentState = state;
-        curSate?.Exit();
-        nextState?.Enter();
-    }
+            PreState = curSate;
+            CurrentState = state;
+            curSate?.Exit();
+            nextState?.Enter();
+        }
 
-    public void SetState(PlayerBaseState state)
-    {
-        //var stateNode = GetOrAddNode(state);
-        CurrentState = state;
-        CurrentState?.Enter();
-    }
+        public void SetState(PlayerBaseState state)
+        {
+            //var stateNode = GetOrAddNode(state);
+            CurrentState = state;
+            CurrentState?.Enter();
+        }
 
-    public void FixedUpdate()
-    {
-        CurrentState?.FixedUpdate();
+        public void FixedUpdate()
+        {
+            CurrentState?.FixedUpdate();
+        }
     }
 }

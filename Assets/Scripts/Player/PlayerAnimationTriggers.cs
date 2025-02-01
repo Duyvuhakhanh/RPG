@@ -1,21 +1,25 @@
+using Animation;
 using UnityEngine;
-public class PlayerAnimationTriggers : MonoBehaviour, IAnimationTrigger
+namespace Player
 {
-    Player player => GetComponentInParent<Player>();
+    public class PlayerAnimationTriggers : MonoBehaviour, IAnimationTrigger
+    {
+        Player player => GetComponentInParent<Player>();
 
-    public void AnimationFinishTrigger()
-    {
-        player.AnimationFinishTriger();
-    }
-    public void AttackAnimationTrigger()
-    {
-        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, player.attackCheckRadius, player.whatIsEnemy);
-        foreach(var target in hitTargets)
+        public void AnimationFinishTrigger()
         {
-            var targetInfo = target.GetComponent<IDamgeable>();
-            if(targetInfo != null)
+            player.AnimationFinishTriger();
+        }
+        public void AttackAnimationTrigger()
+        {
+            Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, player.attackCheckRadius, player.whatIsEnemy);
+            foreach(var target in hitTargets)
             {
-                targetInfo.TakeDamage(1);
+                var targetInfo = target.GetComponent<IDamgeable>();
+                if(targetInfo != null)
+                {
+                    targetInfo.TakeDamage(1);
+                }
             }
         }
     }

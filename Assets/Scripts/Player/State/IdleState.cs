@@ -1,22 +1,25 @@
 using UnityEngine;
-public class IdleState : GroundedState
+namespace Player.State
 {
-    public IdleState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
+    public class IdleState : GroundedState
     {
-    }
-    public override void Enter()
-    {
-        base.Enter();
-        player.SetVelocity(Vector2.zero);
-
-    }
-    public override void Update()
-    {
-        base.Update();
-        if(xInput != 0 && !player.isBusy)
+        public IdleState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
         {
-            PlayerStateMachine.ChangeState(player.MoveState);
         }
-    }
+        public override void Enter()
+        {
+            base.Enter();
+            player.SetVelocity(Vector2.zero);
 
+        }
+        public override void Update()
+        {
+            base.Update();
+            if(xInput != 0 && !player.isBusy)
+            {
+                PlayerStateMachine.ChangeState(player.MoveState);
+            }
+        }
+
+    }
 }

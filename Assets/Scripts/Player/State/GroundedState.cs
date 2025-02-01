@@ -1,31 +1,38 @@
 using UnityEngine;
-public class GroundedState : PlayerBaseState
+namespace Player.State
 {
-    public GroundedState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
+    public class GroundedState : PlayerBaseState
     {
-    }
-    public override void Enter()
-    {
-        base.Enter();
-    }
-    public override void Exit()
-    {
-        base.Exit();
-    }
-    public override void Update()
-    {
-        base.Update();
-        if (yInput > 0)
+        public GroundedState(Player player, PlayerStateMachine playerStateMachine, Animator animator, string animationKey) : base(player, playerStateMachine, animator, animationKey)
         {
-            PlayerStateMachine.ChangeState(player.JumpState);
         }
-        if (Input.GetMouseButton(0))
+        public override void Enter()
         {
-            PlayerStateMachine.ChangeState(player.PrimeAttackState);
+            base.Enter();
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        public override void Exit()
         {
-            PlayerStateMachine.ChangeState(player.CounterAttackState);
+            base.Exit();
+        }
+        public override void Update()
+        {
+            base.Update();
+            if (yInput > 0)
+            {
+                PlayerStateMachine.ChangeState(player.JumpState);
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                PlayerStateMachine.ChangeState(player.PrimeAttackState);
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                PlayerStateMachine.ChangeState(player.CounterAttackState);
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                PlayerStateMachine.ChangeState(player.AimSwordState);
+            }
         }
     }
 }

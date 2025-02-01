@@ -1,30 +1,34 @@
+using Animation;
 using UnityEngine;
-public class EnemySkeletonAnimationTriggers : MonoBehaviour, IAnimationTrigger
+namespace Enemy.Skeleton
 {
-    protected Enemy_Skeleton skeleton => GetComponentInParent<Enemy_Skeleton>();
-    public void AnimationFinishTrigger()
+    public class EnemySkeletonAnimationTriggers : MonoBehaviour, IAnimationTrigger
     {
-        skeleton.AnimationFinishTriger();
-
-    }
-    public void AttackAnimationTrigger()
-    {
-        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, skeleton.attackCheckRadius, skeleton.whatIsPlayer);
-        foreach(var target in hitTargets)
+        protected Enemy_Skeleton skeleton => GetComponentInParent<Enemy_Skeleton>();
+        public void AnimationFinishTrigger()
         {
-            var targetInfo = target.GetComponent<IDamgeable>();
-            if(targetInfo != null)
+            skeleton.AnimationFinishTriger();
+
+        }
+        public void AttackAnimationTrigger()
+        {
+            Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, skeleton.attackCheckRadius, skeleton.whatIsPlayer);
+            foreach(var target in hitTargets)
             {
-                targetInfo.TakeDamage(1);
+                var targetInfo = target.GetComponent<IDamgeable>();
+                if(targetInfo != null)
+                {
+                    targetInfo.TakeDamage(1);
+                }
             }
         }
-    }
-    protected void OpenCounterAttackWindow()
-    {
-        skeleton.OpenCounterAttackWindow();
-    }
-    protected void CloseCounterAttackWindow()
-    {
-        skeleton.CloseCounterAttackWindow();
+        protected void OpenCounterAttackWindow()
+        {
+            skeleton.OpenCounterAttackWindow();
+        }
+        protected void CloseCounterAttackWindow()
+        {
+            skeleton.CloseCounterAttackWindow();
+        }
     }
 }

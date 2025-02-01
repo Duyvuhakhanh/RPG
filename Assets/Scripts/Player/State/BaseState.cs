@@ -1,30 +1,33 @@
 using UnityEngine;
-public class BaseState : IState
+namespace Player.State
 {
-    protected Animator animator;
-    protected int hashKey;
-    protected PlayerStateMachine PlayerStateMachine;
-    protected float stateTimmer;
-    protected bool triggerCalled;
-    public virtual void Enter()
+    public class BaseState : IState
     {
-        animator.SetBool(hashKey, true);
-        triggerCalled = false;
-    }
-    public virtual void Exit()
-    {
-        animator.SetBool(hashKey, false);
-    }
-    public virtual void Update()
-    {
-        stateTimmer -= Time.deltaTime;
+        protected Animator animator;
+        protected int hashKey;
+        protected PlayerStateMachine PlayerStateMachine;
+        protected float stateTimmer;
+        protected bool triggerCalled;
+        public virtual void Enter()
+        {
+            animator.SetBool(hashKey, true);
+            triggerCalled = false;
+        }
+        public virtual void Exit()
+        {
+            animator.SetBool(hashKey, false);
+        }
+        public virtual void Update()
+        {
+            stateTimmer -= Time.deltaTime;
 
-    }
-    public virtual void FixedUpdate()
-    {
-    }
-    public virtual void AnimationTrigger()
-    {
-        triggerCalled = true;
+        }
+        public virtual void FixedUpdate()
+        {
+        }
+        public virtual void AnimationTrigger()
+        {
+            triggerCalled = true;
+        }
     }
 }
