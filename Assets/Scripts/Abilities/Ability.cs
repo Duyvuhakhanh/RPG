@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Abilities
 {
-    public abstract class Ability : MonoBehaviour
+    public abstract class Ability : MonoBehaviour, IAbility
     {
         [SerializeField] protected float cooldown;
         protected float coolDownTimer;
@@ -10,19 +10,19 @@ namespace Abilities
         {
             coolDownTimer -= Time.deltaTime;
         }
-        public bool CheckAndUseAbility()
+        public virtual bool CheckAndUseAbility(ICaster caster)
         {
             if (coolDownTimer <= 0)
             {
-                UseAbility();
+                UseAbility(caster);
                 coolDownTimer = cooldown;
                 return true;
             }
             return false;
         }
-        public virtual void UseAbility()
+        public virtual void UseAbility(ICaster caster)
         {
-            Debug.Log("Ability Used");
+            
         }
     }
 }

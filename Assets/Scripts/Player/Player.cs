@@ -5,8 +5,9 @@ using Player.State;
 using UnityEngine;
 namespace Player
 {
-    public class Player : Enity
+    public class Player : Enity, ICaster
     {
+
         protected PlayerStateMachine PlayerStateMachine;
     
         [Header("Attack Info")] 
@@ -74,7 +75,7 @@ namespace Player
         private void CheckDashInput()
         {
             if(IsWallDetected()) return;
-            if (Input.GetKeyDown(KeyCode.LeftShift) && AbilityManager.instance.dashAbility.CheckAndUseAbility())
+            if (Input.GetKeyDown(KeyCode.LeftShift) && AbilityManager.instance.dashAbility.CheckAndUseAbility(this))
             {
                 dashDir = Input.GetAxisRaw("Horizontal");
                 if (dashDir == 0)
@@ -97,6 +98,11 @@ namespace Player
             PlayerStateMachine.CurrentState.AnimationTrigger();
         }
 
-
+        public Transform GetTransform() => this.transform;
+        public Rigidbody2D GetRigidbody() => this.rb;
+        public void ThrowSwordAnimationTrigger()
+        {
+            AbilityManager.instance.swordAbility.CheckAndUseAbility(this);
+        }
     }
 }

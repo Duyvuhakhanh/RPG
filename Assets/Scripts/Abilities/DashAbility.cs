@@ -6,9 +6,6 @@ namespace Abilities
         {
             cooldown = 1f;
         }
-        public override void UseAbility()
-        {
-            base.UseAbility();
-        }
+
     }
 }

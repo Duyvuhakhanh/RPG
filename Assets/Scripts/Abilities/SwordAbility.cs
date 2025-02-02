@@ -4,11 +4,16 @@ namespace Abilities
 {
     public class SwordAbility : Ability
     {
-        [Header("Skill info")]
-        [SerializeField] protected GameObject swordPrefab;
-        public override void UseAbility()
+        [Header("Skill info")] [SerializeField]
+        private SwordController swordPrefab;
+
+        [SerializeField] private Vector2 launchDir;
+        [SerializeField] private float swordGravity;
+        public override void UseAbility(ICaster caster)
         {
-            Debug.Log("Sword Ability Used");
+            var casterTrans = caster.GetTransform();
+            var sword = Instantiate(swordPrefab, casterTrans.position, Quaternion.identity);
+            sword.SetupSword(launchDir, swordGravity);
         }
     }
 }

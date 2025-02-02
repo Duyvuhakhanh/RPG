@@ -22,5 +22,9 @@ namespace Player
                 }
             }
         }
+        public void ThrowSwordAnimationTrigger()
+        {
+            player.ThrowSwordAnimationTrigger();
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace Abilities
         public static AbilityManager instance;
         public DashAbility dashAbility { get; private set; }
         public CloneAbility cloneAbility { get; private set; }
+        public SwordAbility swordAbility { get; private set; }
         private void Awake()
         {
             if (instance == null)
@@ -23,6 +24,7 @@ namespace Abilities
         {
             dashAbility = GetComponentInChildren<DashAbility>();
             cloneAbility = GetComponentInChildren<CloneAbility>();
+            swordAbility = GetComponentInChildren<SwordAbility>();
         }
 
     }

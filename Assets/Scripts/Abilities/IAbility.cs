@@ -2,6 +2,8 @@ namespace Abilities
 {
     public interface IAbility
     {
-        public void Activate();
+        public bool CheckAndUseAbility(ICaster caster);
+        public void UseAbility(ICaster caster);
+
     }
 }
