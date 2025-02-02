@@ -9,26 +9,23 @@ namespace Player.State
         public override void Enter()
         {
             base.Enter();
+
+            UpdateDirection();
         }
-        public override void Exit()
+        private void UpdateDirection()
         {
-            base.Exit();
+            if(player.faceDir * (player.sword.transform.position.x - player.transform.position.x) < 0)
+            {
+                player.Flip();
+            }
         }
         public override void Update()
         {
             base.Update();
-            if (yInput < 0)
+            if(triggerCalled)
             {
                 PlayerStateMachine.ChangeState(player.IdleState);
             }
-            if (xInput != 0)
-            {
-                PlayerStateMachine.ChangeState(player.MoveState);
-            }
-        }
-        public override void FixedUpdate()
-        {
-            base.FixedUpdate();
         }
     }
 }

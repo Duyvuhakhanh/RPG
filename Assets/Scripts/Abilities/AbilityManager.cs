@@ -11,6 +11,7 @@ namespace Abilities
         public SwordAbility swordAbility { get; private set; }
         private void Awake()
         {
+            //singleton
             if (instance == null)
             {
                 instance = this;
@@ -19,13 +20,12 @@ namespace Abilities
             {
                 Destroy(this.gameObject);
             }
-        }
-        private void Start()
-        {
+            //
             dashAbility = GetComponentInChildren<DashAbility>();
             cloneAbility = GetComponentInChildren<CloneAbility>();
             swordAbility = GetComponentInChildren<SwordAbility>();
         }
+
 
     }
 }

@@ -5,11 +5,13 @@ using Player.State;
 using UnityEngine;
 namespace Player
 {
+    [RequireComponent(typeof(PlayerVisualizeSwordAbility))]
     public class Player : Enity, ICaster
     {
 
         protected PlayerStateMachine PlayerStateMachine;
-    
+        public PlayerVisualizeSwordAbility playerVisualizeSwordAbility { get; private set; }
+        public SwordController sword;
         [Header("Attack Info")] 
         public Vector2[] attackMovement;
 
@@ -40,11 +42,15 @@ namespace Player
 
         #endregion
 
-
+        protected override void Awake()
+        {
+            base.Awake();
+            playerVisualizeSwordAbility = GetComponent<PlayerVisualizeSwordAbility>();
+        }
         private void Start()
         {
-            PlayerStateMachine = new PlayerStateMachine();
             // Define States
+            PlayerStateMachine = new PlayerStateMachine();
             IdleState = new IdleState(this, PlayerStateMachine, animator, AnimationKeys.Idle);
             MoveState = new MoveState(this, PlayerStateMachine, animator, AnimationKeys.Move);
             JumpState = new JumpState(this, PlayerStateMachine, animator, AnimationKeys.Jump);
@@ -72,6 +78,7 @@ namespace Player
             PlayerStateMachine.FixedUpdate();
 
         }
+    
         private void CheckDashInput()
         {
             if(IsWallDetected()) return;
@@ -98,8 +105,27 @@ namespace Player
             PlayerStateMachine.CurrentState.AnimationTrigger();
         }
 
+        public void AssignSword(SwordController sword)
+        {
+            this.sword = sword;
+        }
+        public void CatchSword()
+        {
+            PlayerStateMachine.ChangeState(CatchSwordState);
+            ClearSword();
+        }
+        private void ClearSword()
+        {
+
+            Destroy(sword.gameObject);
+            sword = null;
+        }
         public Transform GetTransform() => this.transform;
         public Rigidbody2D GetRigidbody() => this.rb;
+        public global::Player.Player GetType<Player>()
+        {
+            return this ;
+        }
         public void ThrowSwordAnimationTrigger()
         {
             AbilityManager.instance.swordAbility.CheckAndUseAbility(this);

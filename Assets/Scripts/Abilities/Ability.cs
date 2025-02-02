@@ -20,7 +20,7 @@ namespace Abilities
             }
             return false;
         }
-        public virtual void UseAbility(ICaster caster)
+        public virtual void UseAbility(ICaster _caster)
         {
             
         }

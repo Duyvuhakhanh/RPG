@@ -29,10 +29,19 @@ namespace Player.State
             {
                 PlayerStateMachine.ChangeState(player.CounterAttackState);
             }
-            if (Input.GetKeyDown(KeyCode.Mouse1))
+            if (Input.GetKeyDown(KeyCode.Mouse1) )
             {
-                PlayerStateMachine.ChangeState(player.AimSwordState);
+                if(HasNoSword())
+                    PlayerStateMachine.ChangeState(player.AimSwordState);
+                else
+                {
+                    player.sword.ReturnSword();
+                }
             }
+        }
+        private bool HasNoSword()
+        {
+            return !player.sword;
         }
     }
 }
