@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 namespace Enemy
 {
@@ -16,10 +17,12 @@ namespace Enemy
         public Vector2 stunKnockBackDirection;
         protected bool canBeStunned;
         [SerializeField] protected GameObject counterImage;
+        protected float awakeSpeed;
         protected override void Awake()
         {
             base.Awake();
             enemyStateMachine = new EnemyStateMachine();
+            awakeSpeed = moveSpeed;
         }
         protected override void Update()
         {
@@ -27,6 +30,23 @@ namespace Enemy
             enemyStateMachine.Update();
 
         }
+        public virtual void FreezeTimer(bool timeFrozen)
+        {
+            moveSpeed = timeFrozen ? 0 : awakeSpeed;
+            animator.speed = timeFrozen ? 0 : 1;
+        }
+        protected virtual IEnumerator IFrozenTimer(float time)
+        {
+            FreezeTimer(true);
+            yield return new WaitForSeconds(time);
+            FreezeTimer(false);
+        }
+        public void DoFreezeTimer(float time)
+        {
+            StartCoroutine(IFrozenTimer(time));
+        }
+        #region Counter Attack Window
+
         public virtual void OpenCounterAttackWindow()
         {
             canBeStunned = true;
@@ -37,6 +57,9 @@ namespace Enemy
             canBeStunned = false;
             counterImage.SetActive(false);
         }
+
+        #endregion
+       
         public override void AnimationFinishTriger()
         {
             enemyStateMachine.CurrentState.AnimationTrigger();
