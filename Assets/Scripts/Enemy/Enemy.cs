@@ -41,7 +41,7 @@ namespace Enemy
             yield return new WaitForSeconds(time);
             FreezeTimer(false);
         }
-        public void DoFreezeTimer(float time)
+        public void DoFreezeTimerInATime(float time)
         {
             StartCoroutine(IFrozenTimer(time));
         }

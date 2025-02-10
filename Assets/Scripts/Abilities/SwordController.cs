@@ -166,7 +166,7 @@ namespace Abilities
         {
 
             enemy.TakeDamage(1);
-            enemy.DoFreezeTimer(freezeTime);
+            enemy.DoFreezeTimerInATime(freezeTime);
         }
         private void StuckInto(Collider2D collision)
         {
@@ -226,7 +226,7 @@ namespace Abilities
                         foreach(var target in hitTargets)
                         {
                             var enemy = target.GetComponent<Enemy.Enemy>();
-                            if (enemy != null)
+                            if (enemy is not null)
                             {
                                 SwordDamageEnemmy(enemy);
                             }

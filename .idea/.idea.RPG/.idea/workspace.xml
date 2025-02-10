@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="095d97d0-81d1-46f7-a264-7edcd999b022" name="Changes" comment="" />
+    <list default="true" id="095d97d0-81d1-46f7-a264-7edcd999b022" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/BlackHoleAbilityController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/BlackHoleAbilityController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/BlackHoleHotkeyController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/BlackHoleHotkeyController.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.RPG/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RPG/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Abilities/SwordController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Abilities/SwordController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/Enemy.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,6 +133,7 @@
       <workItem from="1738604283800" duration="1267000" />
       <workItem from="1738608874394" duration="1053000" />
       <workItem from="1738682327293" duration="10962000" />
+      <workItem from="1739203930543" duration="1853000" />
     </task>
     <servers />
   </component>
