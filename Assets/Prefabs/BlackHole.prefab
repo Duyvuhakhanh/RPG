@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f60e7c5b3f4fa987bc5a7a3d949cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hotkeyControllerPrefab: {fileID: 5113450586486048802, guid: 64070d855937f834fabdd2d7e70fc68b, type: 3}
+  hotkeyControllerPrefab: {fileID: 1972927760628438697, guid: 64070d855937f834fabdd2d7e70fc68b, type: 3}
   keyCodeList: 6600000011010000150100006c00000011010000
   maxSize: 15
   growthRate: 1

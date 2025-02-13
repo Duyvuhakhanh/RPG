@@ -23,10 +23,10 @@ namespace Abilities
                 Destroy(this.gameObject);
             }
         }
-        public void SetUpClone(Transform clonePos, float cloneDuration)
+        public void SetUpClone(Transform clonePos, float cloneDuration, Vector3 offset)
         {
             animator.SetBool(AnimationKeys.Attack, true);
-            this.transform.position = clonePos.position;
+            this.transform.position = clonePos.position + offset;
             this.transform.rotation = clonePos.rotation;
             cloneTimer = cloneDuration;
         }

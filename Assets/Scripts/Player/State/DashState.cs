@@ -11,7 +11,7 @@ namespace Player.State
         public override void Enter()
         {
             base.Enter();
-            AbilityManager.instance.cloneAbility.CreateClone(player.transform);
+            AbilityManager.instance.cloneAbility.CreateClone(player.transform, Vector2.zero);
             stateTimmer = player.dashTime;
             preState = PlayerStateMachine.PreState;
             OnDash();
